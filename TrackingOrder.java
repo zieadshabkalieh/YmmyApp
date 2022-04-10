@@ -133,11 +133,7 @@ public class TrackingOrder extends FragmentActivity implements OnMapReadyCallbac
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 try {
-                    Response responses = null;
-                    if (response.isSuccessful()) {
-//                    JSONObject jsonObject = new JSONObject(responses.body().string());
                         JSONObject jsonObject = new JSONObject(responses.body().toString());
-                        Toast.makeText(TrackingOrder.this, jsonObject + "", Toast.LENGTH_SHORT).show();
                         String lat = ((JSONArray) jsonObject.get("results"))
                                 .getJSONObject(0)
                                 .getJSONObject("geometry")
@@ -172,11 +168,6 @@ public class TrackingOrder extends FragmentActivity implements OnMapReadyCallbac
 
                                     }
                                 });
-                    }
-                    else{
-                        Log.e("Error Code", String.valueOf(response.code()));
-                        Log.e("Error Body", response.errorBody().toString());
-                    }
                 }
                 catch (JSONException e) {
                     e.printStackTrace();
